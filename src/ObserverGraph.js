@@ -7,7 +7,7 @@ class ObserverGraph extends React.Component {
     this.state = {};
   }
 
-  componentWillUpdate = () => {
+  componentDidUpdate = () => {
     let data = [...this.props.data];
     let gains = this.props.options.gains;
     let offsets = this.props.options.offsets;
@@ -15,10 +15,12 @@ class ObserverGraph extends React.Component {
       if (index === 0) return;
       element.forEach((subElement, index) => {
         if (index === 0) return;
+        if (index > 1) return;
         subElement = subElement * gains[index - 1];
         subElement = subElement + offsets[index - 1];
       });
     });
+    console.log(data);
   };
 
   // const chartEvents = [
